@@ -22,14 +22,15 @@ public interface ICache<K, V> {
     V get(K key);
 
     /**
-     * Get from cache first, if not found get from func
+     * Get from cache first, if not found get from func with ttls
      *
      * @param key
      * @param func provide get without cache
+     * @param ttlSecs time to live in seconds
      * @return
      */
     @Nullable
-    default V cacheGet(K key, Function<K, V> func) {
+    default V cacheGet(K key, Function<K, V> func, int ttlSecs) {
         V val = get(key);
         if (val != null) {
             return val;
@@ -38,6 +39,17 @@ public interface ICache<K, V> {
             put(key, val);
             return val;
         }
+    }
+
+    /**
+     * Get from cache first, if not found get from func without ttls
+     *
+     * @param key
+     * @param func provide get without cache
+     * @return
+     */
+    default V cacheGet(K key, Function<K, V> func) {
+        return cacheGet(key, func, 0);
     }
 
     /**
