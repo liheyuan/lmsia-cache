@@ -36,7 +36,7 @@ public interface ICache<K, V> {
             return val;
         } else {
             val = func.apply(key);
-            put(key, val);
+            put(key, val, ttlSecs);
             return val;
         }
     }

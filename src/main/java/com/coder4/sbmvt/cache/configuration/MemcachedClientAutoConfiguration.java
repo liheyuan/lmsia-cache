@@ -38,6 +38,7 @@ public class MemcachedClientAutoConfiguration {
         this.connPoolSize = connPoolSize;
     }
 
+    @Bean
     @ConditionalOnMissingBean(MemcachedClient.class)
     public MemcachedClient createMemcachedClient() throws IOException {
         return MemcachedClientBuilder2.build(serverList, connPoolSize);
