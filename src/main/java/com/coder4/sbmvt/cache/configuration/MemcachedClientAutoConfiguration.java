@@ -1,0 +1,55 @@
+package com.coder4.sbmvt.cache.configuration;
+
+import com.coder4.sbmvt.cache.builder.MemcachedClientBuilder2;
+import com.coder4.sbmvt.cache.configuration.MemcachedClientAutoConfiguration.MemcachedConfiguration;
+import net.rubyeye.xmemcached.MemcachedClient;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
+
+/**
+ * @author coder4
+ */
+@Configuration
+@ConditionalOnClass(MemcachedClient.class)
+@EnableConfigurationProperties(MemcachedConfiguration.class)
+public class MemcachedClientAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public MemcachedClient createMemcachedClient(MemcachedConfiguration configuration) throws IOException {
+        return MemcachedClientBuilder2.build(configuration);
+    }
+
+    @Configuration
+    @ConfigurationProperties(prefix = "memcached")
+    public static class MemcachedConfiguration {
+
+        // Server list seperate by space
+        private String serverList;
+
+        // Connection Pool Size, default 64
+        private int connPoolSize = 64;
+
+        public String getServerList() {
+            return serverList;
+        }
+
+        public void setServerList(String serverList) {
+            this.serverList = serverList;
+        }
+
+        public int getConnPoolSize() {
+            return connPoolSize;
+        }
+
+        public void setConnPoolSize(int connPoolSize) {
+            this.connPoolSize = connPoolSize;
+        }
+    }
+}
