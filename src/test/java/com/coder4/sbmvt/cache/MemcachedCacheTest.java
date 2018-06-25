@@ -1,7 +1,6 @@
 package com.coder4.sbmvt.cache;
 
 import com.coder4.sbmvt.cache.builder.MemcachedClientBuilder2;
-import com.coder4.sbmvt.cache.configuration.MemcachedClientAutoConfiguration.MemcachedConfiguration;
 import com.coder4.sbmvt.cache.transfomer.key.DefaultCacheKeyTransformer;
 import net.rubyeye.xmemcached.MemcachedClient;
 
@@ -14,10 +13,7 @@ public class MemcachedCacheTest {
 
     private static void testMemcachedCache() throws Exception {
 
-        MemcachedConfiguration configuration = new MemcachedConfiguration();
-        configuration.setServerList("localhost:11211");
-
-        MemcachedClient client = MemcachedClientBuilder2.build(configuration);
+        MemcachedClient client = MemcachedClientBuilder2.build("localhost:11211", 16);
 
         MemcachedCache<TestKey, TestValue> memcachedCache = new MemcachedCache<>(
                 client,
