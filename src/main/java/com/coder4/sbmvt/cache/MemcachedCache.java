@@ -1,5 +1,7 @@
 package com.coder4.sbmvt.cache;
 
+import com.coder4.sbmvt.cache.transfomer.key.CacheKeyTransformer;
+import com.coder4.sbmvt.cache.transfomer.value.CacheValueTransformer;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.transcoders.CachedData;
 import net.rubyeye.xmemcached.transcoders.CompressionMode;

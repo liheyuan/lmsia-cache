@@ -1,4 +1,4 @@
-package com.coder4.sbmvt.cache;
+package com.coder4.sbmvt.cache.transfomer.key;
 
 /**
  * @author coder4

@@ -1,5 +1,7 @@
 package com.coder4.sbmvt.cache;
 
+import com.coder4.sbmvt.cache.transfomer.value.JsonCacheValueTransformer;
+
 /**
  * @author coder4
  */

@@ -2,6 +2,7 @@ package com.coder4.sbmvt.cache;
 
 import com.coder4.sbmvt.cache.builder.MemcachedClientBuilder2;
 import com.coder4.sbmvt.cache.configuration.MemcachedClientAutoConfiguration.MemcachedConfiguration;
+import com.coder4.sbmvt.cache.transfomer.key.DefaultCacheKeyTransformer;
 import net.rubyeye.xmemcached.MemcachedClient;
 
 import java.util.Arrays;

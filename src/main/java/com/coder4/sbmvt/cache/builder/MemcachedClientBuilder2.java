@@ -1,6 +1,5 @@
 package com.coder4.sbmvt.cache.builder;
 
-import com.coder4.sbmvt.cache.configuration.MemcachedClientAutoConfiguration.MemcachedConfiguration;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.MemcachedClientBuilder;
 import net.rubyeye.xmemcached.XMemcachedClientBuilder;
@@ -14,11 +13,11 @@ import java.io.IOException;
  */
 public class MemcachedClientBuilder2 {
 
-    public static MemcachedClient build(MemcachedConfiguration config) throws IOException {
+    public static MemcachedClient build(String serverList, int connPoolSize) throws IOException {
         MemcachedClientBuilder builder = new XMemcachedClientBuilder(
-                AddrUtil.getAddresses(config.getServerList()));
+                AddrUtil.getAddresses(serverList));
         // conn pool
-        builder.setConnectionPoolSize(config.getConnPoolSize());
+        builder.setConnectionPoolSize(connPoolSize);
         // consistent hash
         builder.setSessionLocator(new KetamaMemcachedSessionLocator());
         return builder.build();
